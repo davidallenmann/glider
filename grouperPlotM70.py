@@ -19,17 +19,17 @@ import simplekml
 offsetHours = 0
 
 # import files
-gpsFile = '/w/loggerhead/glider/M70_Feb2017/M70gps.csv'
-#dataFile = '/w/loggerhead/glider/M70_Feb2017/M70_RedGrouper.csv'
-dataFile = '/w/loggerhead/glider/M70_Feb2017/M70_RedGrouper_DSG.csv'
-tagFile = '/w/loggerhead/glider/M70_Feb2017/M70_VMT.csv'
+gpsFile = 'M70_Feb2017/M70gps.csv'
+#dataFile = '/Users/dmann/w/loggerhead/glider/M70_Feb2017/M70_RedGrouper.csv'
+dataFile = 'M70_Feb2017/M70_RedGrouper_DSG.csv'
+tagFile = 'M70_Feb2017/M70_VMT.csv'
 
 # output files
-#mergeFile = '/w/loggerhead/glider/M70_Feb2017/M70_merge.csv'
-#kmlFile = '/w/loggerhead/glider/M70_Feb2017/M70_RedGrouper.kml'
-mergeFile = '/w/loggerhead/glider/M70_Feb2017/M70_merge_DSG.csv'
-kmlFile = '/w/loggerhead/glider/M70_Feb2017/M70_RedGrouper_DSG.kml'
-kmlGlider = '/w/loggerhead/glider/M70_Feb2017/M70gps.kml'
+#mergeFile = '/Users/dmann/w/loggerhead/glider/M70_Feb2017/M70_merge.csv'
+#kmlFile = '/Users/dmann/w/loggerhead/glider/M70_Feb2017/M70_RedGrouper.kml'
+mergeFile = 'M70_Feb2017/M70_merge_DSG.csv'
+kmlFile = 'M70_Feb2017/M70_RedGrouper_DSG.kml'
+kmlGlider = 'M70_Feb2017/M70gps.kml'
 
 # read in and format GPS csv file
 df = pd.read_csv(gpsFile, header=0, sep=',', names=['Date_Time', 'Latitude', 'Longitude'], dtype = {'Date_Time': str, 'Latitude': np.float64, 'Longitude': np.float64})
@@ -57,6 +57,7 @@ df2 = df2.sort_index()
 # resample 1 minute bins
 df2 = df2.resample('1T').sum()
 df2.columns = ['sounds']
+
 
 
 # # read in VMT
@@ -119,3 +120,13 @@ ls.extrude = 1
 ls.altitudemode = simplekml.AltitudeMode.relativetoground
 kml.save(kmlGlider)
 
+# Time when glider near fixed station
+start_date = '2017-02-18 22:38:59'
+end_date = '2017-02-18 23:40:59'
+print(df2.dropna()[start_date : end_date])
+print(sum(df2.dropna()[start_date : end_date].sounds))
+
+start_date = '2017-03-03 17:37:44'
+end_date = '2017-03-03 18:52:36'
+print(df2.dropna()[start_date : end_date])
+print(sum(df2.dropna()[start_date : end_date].sounds))

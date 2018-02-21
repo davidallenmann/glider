@@ -5,14 +5,14 @@ import simplekml
 
 # user changeable variables
 # import files
-gpsFile = '/w/loggerhead/glider/M72_Jun2017/M72gps.csv'
-dataFile = '/w/loggerhead/glider/M72_Jun2017/M72_RedGrouper.csv'
-tagFile = '/w/loggerhead/glider/M72_Jun2017/M72_VMT.csv'
+gpsFile = 'M72_Jun2017/M72gps.csv'
+dataFile = 'M72_Jun2017/M72_RedGrouper.csv'
+tagFile = 'M72_Jun2017/M72_VMT.csv'
 
 # output files
-mergeFile = '/w/loggerhead/glider/M72_Jun2017/M72_merge.csv'
-kmlFile = '/w/loggerhead/glider/M72_Jun2017/M72_RedGrouper.kml'
-kmlGlider = '/w/loggerhead/glider/M72_Jun2017/M72gps.kml'
+mergeFile = 'M72_Jun2017/M72_merge.csv'
+kmlFile = 'M72_Jun2017/M72_RedGrouper.kml'
+kmlGlider = 'M72_Jun2017/M72gps.kml'
 
 # Time zone offset for red grouper file
 # if time in UTC, offsetHours = 0
@@ -107,3 +107,17 @@ ls.extrude = 1
 ls.altitudemode = simplekml.AltitudeMode.relativetoground
 kml.save(kmlGlider)
 
+start_date = '2017-06-03 03:45:58'
+end_date = '2017-06-03 05:03:48'
+print(df2.dropna()[start_date : end_date])
+print(sum(df2.dropna()[start_date : end_date].sounds))
+
+start_date = '2017-06-04 18:23:13'
+end_date = '2017-06-04 18:36:48'
+print(df2.dropna()[start_date : end_date])
+print(sum(df2.dropna()[start_date : end_date].sounds))
+
+start_date = '2017-06-04 21:26:54'
+end_date = '2017-06-04 22:10:26'
+print(df2.dropna()[start_date : end_date])
+print(sum(df2.dropna()[start_date : end_date].sounds))
